@@ -1,0 +1,9 @@
+{
+  "name": "Crown & Cross CCEMS Field App",
+  "short_name": "CCEMS Field",
+  "start_url": "./field-journal.html",
+  "display": "standalone",
+  "background_color": "#021f19",
+  "theme_color": "#03271f",
+  "icons": [{"src":"ccems-field-icon-v2.png","sizes":"1024x1024","type":"image/png","purpose":"any maskable"}]
+}

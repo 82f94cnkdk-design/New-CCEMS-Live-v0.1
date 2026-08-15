@@ -1,0 +1,12 @@
+from pathlib import Path
+
+src = Path("journal-app-live-v33.js").read_text(encoding="utf-8")
+old = 'function render(){app.innerHTML=({standby,welcome,login,setup,home,tasks,journal,more,task,collect,concern,confirm,forms,\'form-risk\':formRisk,\'form-equipment\':formEquipment,\'form-coshh\':formCoshh,\'form-training\':formTraining,\'form-incident\':formIncident}[view]||standby)()}render();'
+new = r'''function operationalFooter(){const active=view==='home'?'home':(['tasks','task','collect'].includes(view)?'tasks':(view==='journal'||view==='forms'||view.startsWith('form-')?'journal':'more'));return `<nav class="field-bottom-nav operational-footer"><button class="${active==='home'?'active':''}" onclick="go('home')"><i class="nav-icon nav-home"></i><span>My Day</span></button><button class="${active==='tasks'?'active':''}" onclick="go('tasks')"><i class="nav-icon nav-tasks"></i><span>Tasks</span></button><button class="${active==='journal'?'active':''}" onclick="go('journal')"><i class="nav-icon nav-journal"></i><span>Journal</span></button><button class="${active==='more'?'active':''}" onclick="go('more')"><i class="nav-icon nav-more"></i><span>More</span></button></nav>`}
+function decorateOperationalPage(){app.dataset.view=view;const page=app.querySelector('.journal-page');if(!page)return;page.classList.add('crown-cross-operational');const head=page.querySelector('.journal-head');if(head){head.insertAdjacentHTML('beforeend',`<aside class="journal-live-status"><div><b>18°C</b><small>Partly sunny</small></div><div class="journal-alert-crown"><i class="alert-crown"></i><span>1</span></div><div><b>Dean</b><small>Estate Director</small></div></aside>`)}const work=page.querySelector('.paper-workflow');if(work&&!work.querySelector('.page-emblem')&&!work.querySelector('.safety-faith-mark'))work.insertAdjacentHTML('afterbegin',`<div class="page-emblem emblem-${view.replace('form-','form')}"><i></i><span>†</span></div>`);page.insertAdjacentHTML('beforeend',operationalFooter())}
+function render(){app.innerHTML=({standby,welcome,login,setup,home,tasks,journal,more,task,collect,concern,confirm,forms,'form-risk':formRisk,'form-equipment':formEquipment,'form-coshh':formCoshh,'form-training':formTraining,'form-incident':formIncident}[view]||standby)();if(!['standby','welcome','login','setup','confirm','home'].includes(view))decorateOperationalPage()}render();'''
+
+if old not in src:
+    raise SystemExit("render block not found")
+src = src.replace(old, new)
+Path("journal-app-live-v36.js").write_text(src, encoding="utf-8")

@@ -1,0 +1,52 @@
+/* Single continuous parchment silhouette traced from the attached approved board. */
+.approved-standby .standby-journal,
+.approved-welcome .welcome-sheet,
+.journal-login .paper-card{
+  position:relative!important;
+  isolation:isolate!important;
+  overflow:visible!important;
+  border:1px solid #b49a68!important;
+  border-top:0!important;
+  border-radius:0 0 14px 14px!important;
+  background:linear-gradient(#f4eddf,#e8dcc8)!important;
+  box-shadow:inset 0 0 0 4px #fff9ed55!important;
+}
+.approved-standby .standby-journal:before,
+.approved-welcome .welcome-sheet:before,
+.journal-login .paper-card:before{
+  content:""!important;
+  display:block!important;
+  position:absolute!important;
+  z-index:0!important;
+  left:-1px!important;
+  right:-1px!important;
+  top:-44px!important;
+  width:auto!important;
+  height:46px!important;
+  transform:none!important;
+  border:0!important;
+  border-radius:0!important;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 440 46' preserveAspectRatio='none'%3E%3Cpath d='M1 45 C62 28 127 20 194 18 C196 7 206 1 220 1 C234 1 244 7 246 18 C313 20 378 28 439 45 L439 46 L1 46 Z' fill='%23f4eddf' stroke='%23b49a68' stroke-width='1.1'/%3E%3C/svg%3E") center/100% 100% no-repeat!important;
+  box-shadow:none!important;
+}
+.approved-standby .standby-journal:after,
+.approved-welcome .welcome-sheet:after,
+.journal-login .paper-card:after{
+  content:"✝"!important;
+  position:absolute!important;
+  z-index:3!important;
+  left:50%!important;
+  top:-32px!important;
+  transform:translateX(-50%)!important;
+  display:block!important;
+  width:auto!important;
+  height:auto!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  color:#80633b!important;
+  font:18px Georgia,serif!important;
+}
+.approved-standby .standby-journal>*,.approved-welcome .welcome-sheet>*,.journal-login .paper-card>*{position:relative;z-index:2}
+.approved-standby .standby-journal{padding-top:18px!important}.approved-welcome .welcome-sheet{padding-top:18px!important}.journal-login .paper-card{padding-top:18px!important}
