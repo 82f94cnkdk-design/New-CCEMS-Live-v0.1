@@ -60,7 +60,8 @@
         p_client_reference: clientReference,
         p_form_type: formTypes[record.type],
         p_department_code: departmentCodes[record.department],
-        p_fields: fields
+        p_fields: fields,
+        p_asset_id: record.type === "equipment" ? record.assetId || null : null
       });
       const latest = state();
       const current = (latest.safetyForms || []).find(item => (item.clientReference || item.reference) === clientReference);

@@ -77,6 +77,14 @@
     return request(`/rest/v1/${encodeURIComponent(tableName)}?${query}`);
   }
 
+  async function insert(tableName, payload) {
+    return request(`/rest/v1/${encodeURIComponent(tableName)}`, {
+      method: "POST",
+      headers: { Prefer: "return=representation" },
+      body: JSON.stringify(payload)
+    });
+  }
+
   async function health() {
     if (!configured()) return false;
     try {
@@ -95,5 +103,5 @@
     }
   }
 
-  window.CCEMSSupabase = { configured, readSession, signIn, currentEmployee, select, rpc, health, signOut };
+  window.CCEMSSupabase = { configured, readSession, signIn, currentEmployee, select, insert, rpc, health, signOut };
 })();

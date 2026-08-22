@@ -152,6 +152,7 @@
       const createdAt = row.created_at;
       const remote = {
         clientReference: row.client_reference || existing?.clientReference || "",
+        assetId: row.asset_id || existing?.assetId || null,
         reference: row.reference,
         type: definition.type,
         title: definition.title,
@@ -187,7 +188,7 @@
         window.CCEMSSupabase.select("egg_collection_colours", query("egg_collection_id,colour,quantity")),
         window.CCEMSSupabase.select("livestock_welfare_checks", query("id,reference,client_reference,livestock_group_id,location_id,welfare_status,observations,animals_observed,follow_up_date,confirmations,submitter_id,created_at", { order: "created_at.desc", limit: "200" })),
         window.CCEMSSupabase.select("pre_task_safety_records", query("id,reference,client_reference,employee_id,department_id,confirmations,status,submitted_at,created_at", { order: "created_at.desc", limit: "200" })),
-        window.CCEMSSupabase.select("safety_records", query("id,reference,client_reference,form_type,department_id,submitter_id,review_status,created_at", { order: "created_at.desc", limit: "200" })),
+        window.CCEMSSupabase.select("safety_records", query("id,reference,client_reference,form_type,department_id,submitter_id,asset_id,review_status,created_at", { order: "created_at.desc", limit: "200" })),
         window.CCEMSSupabase.select("safety_record_fields", query("safety_record_id,field_key,field_value")),
         window.CCEMSSupabase.select("locations", query("id,reference,name")),
         window.CCEMSSupabase.select("livestock_groups", query("id,reference,name")),
