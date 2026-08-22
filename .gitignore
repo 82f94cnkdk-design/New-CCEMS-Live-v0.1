@@ -1,0 +1,5 @@
+# Local-only Supabase connection details.
+field-supabase-local.js
+
+# Local Codex/Supabase command profile.
+.task-profile/

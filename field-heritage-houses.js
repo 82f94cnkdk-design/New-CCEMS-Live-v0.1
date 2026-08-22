@@ -1,9 +1,9 @@
 const HERITAGE_HOUSES=[
- {id:"HE-H01",number:1,name:"Spring Heritage",collection:"Spring Heritage Egg Collection",artwork:"house-spring.png"},
- {id:"HE-H02",number:2,name:"Summer Heritage",collection:"Summer Heritage Egg Collection",artwork:"house-summer.png"},
- {id:"HE-H03",number:3,name:"Harvest Heritage",collection:"Harvest Heritage Egg Collection",artwork:"house-harvest.png"},
- {id:"HE-H04",number:4,name:"Christmas Estate Heritage",collection:"Christmas Estate Heritage Egg Collection",artwork:"house-christmas.png"},
- {id:"HE-H05",number:5,name:"Royal Estate / Heritage Reserve",collection:"Royal Estate / Heritage Reserve Collection",artwork:"house-royal.png"}
+ {id:"HE-H01",number:1,name:"Spring Heritage",collection:"Spring Heritage Egg Collection",artwork:window.CCEMSArtwork.houses[0]},
+ {id:"HE-H02",number:2,name:"Summer Heritage",collection:"Summer Heritage Egg Collection",artwork:window.CCEMSArtwork.houses[1]},
+ {id:"HE-H03",number:3,name:"Harvest Heritage",collection:"Harvest Heritage Egg Collection",artwork:window.CCEMSArtwork.houses[2]},
+ {id:"HE-H04",number:4,name:"Christmas Estate Heritage",collection:"Christmas Estate Heritage Egg Collection",artwork:window.CCEMSArtwork.houses[3]},
+ {id:"HE-H05",number:5,name:"Royal Estate / Heritage Reserve",collection:"Royal Estate / Heritage Reserve Collection",artwork:window.CCEMSArtwork.houses[4]}
 ];
 
 function heritageHouse(){return HERITAGE_HOUSES[selectedHouse]||HERITAGE_HOUSES[0]}
@@ -20,7 +20,7 @@ journalRecords=function(){return recoveredJournalRecords().map(r=>{if(r.kind!=="
 function applyHeritageJournalArtwork(){
  if(view==="journal"){
   const all=journalRecords(),visible=journalFilter==="all"?all:all.filter(r=>r.kind===journalFilter),eggRows=visible.filter(r=>r.kind==="eggs");
-  document.querySelectorAll(".record-card.record-eggs").forEach((card,i)=>{const r=eggRows[i];if(!r)return;const old=card.querySelector(".collection-artwork");if(old){const img=document.createElement("img");img.className="record-house-artwork";img.src=r.houseArtwork;img.alt=`${r.houseName} approved house artwork`;old.replaceWith(img)}});
+  document.querySelectorAll(".record-card.record-eggs").forEach((card,i)=>{const r=eggRows[i];if(!r)return;const old=card.querySelector(".collection-artwork");if(old&&!old.querySelector("img")){const img=document.createElement("img");img.className="record-house-artwork";img.src=r.houseArtwork;img.alt=`${r.houseName} approved house artwork`;old.replaceWith(img)}});
  }
  if(view==="journal-detail"&&selectedJournalRecord?.kind==="eggs"){
   const house=heritageHouseForRecord(selectedJournalRecord.raw||{}),art=document.querySelector(".collection-detail-art");

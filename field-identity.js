@@ -1,6 +1,6 @@
 (function(){
  let deviceAccess=-1;
- function assignedEmployee(){return String(state().deviceRegistration?.employee||'Dean').trim()||'Dean'}
+ function assignedEmployee(){return String(state().supabaseIdentity?.preferredName||state().deviceRegistration?.employee||'Dean').trim()||'Dean'}
  function enhanceIdentity(){if(view==='home'){const greeting=document.querySelector('.field-greeting>div');if(greeting){const name=greeting.querySelector('strong'),role=greeting.querySelector('em');if(name)name.textContent=assignedEmployee();if(role)role.textContent='Approved estate user'}}if(view==='setup'){const employee=document.querySelector('input[name="employee"]');if(employee){employee.readOnly=false;employee.removeAttribute('aria-readonly');employee.value=assignedEmployee();employee.setAttribute('autocomplete','name');const label=employee.closest('.journal-field');if(label&&!label.querySelector('.device-name-help.identity-help'))label.insertAdjacentHTML('beforeend','<small class="device-name-help identity-help">Enter the authorised employee responsible for records from this device.</small>')}}}
  const previousRender=render;
  render=function(){previousRender();enhanceIdentity()};
